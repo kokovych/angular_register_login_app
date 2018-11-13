@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {User} from '../_models/user';
 
@@ -12,10 +12,23 @@ export class LoginComponent implements OnInit {
   constructor(
     ) { }
   user: User = new User();
+  userLoginForm: FormGroup;
   ngOnInit() {
+    this.userLoginForm = new FormGroup({
+      email: new FormControl(this.user.email ,
+        [Validators.minLength(5), Validators.required, Validators.pattern("[^ @]*@[^ @]*")]),
+      password: new FormControl(this.user.password,
+        [Validators.minLength(8), Validators.required])
+    });
   }
-  onSubmit() {
+  onSubmit(data) {
     console.log(this.user);
+    console.log(data);
+
+  }
+
+  get email() {
+    return this.userLoginForm.get('email');
   }
 
 }
