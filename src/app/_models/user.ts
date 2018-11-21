@@ -5,3 +5,8 @@ export class User {
 
 }
 
+export class UserLoginData {
+  success: string;
+  token: string;
+}
+
