@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { HttpClient,  HttpErrorResponse  } from '@angular/common/http';
-import { Observable} from 'rxjs/index';
-import { HttpHeaders } from '@angular/common/http';
-import { Headers, RequestOptions } from '@angular/http';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 
-import { User, UserLoginData } from '../_models/user';
+import { User } from '../_models/user';
 import { LoginUserService } from '../_services/loginuser.service';
 
 
@@ -19,12 +15,6 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   userLoginForm: FormGroup;
 
-  // loginUserUrl = 'http://127.0.0.1:8000/api/user/login/';
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json',
-  //   })
-  // };
 
   ngOnInit() {
     this.userLoginForm = new FormGroup({
