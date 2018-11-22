@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpClient,  HttpErrorResponse  } from '@angular/common/http';
 import { Observable} from 'rxjs/index';
 import { HttpHeaders } from '@angular/common/http';
+import { Headers, RequestOptions } from '@angular/http';
 
 import { User, UserLoginData } from '../_models/user';
 
@@ -19,14 +20,7 @@ export class LoginComponent implements OnInit {
   loginUserUrl = 'http://127.0.0.1:8000/api/user/login/';
   httpOptions = {
     headers: new HttpHeaders({
-      // 'Content-Type':  'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Max-Age': '1000',
-      'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
-      'Content-Type': 'application/json'
+      'Content-Type':  'application/json',
     })
   };
 
@@ -43,7 +37,7 @@ export class LoginComponent implements OnInit {
     console.log(user);
     console.log(typeof user);
 
-    return this.httpClient.post(this.loginUserUrl, user, this.httpOptions)
+    this.httpClient.post(this.loginUserUrl, user, this.httpOptions)
       .subscribe(
         data => {
           console.log("POST Request is successful ", data);
