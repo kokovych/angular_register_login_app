@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,  HttpErrorResponse  } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+// import {Observable} from "rxjs/index";
 import { catchError, retry } from 'rxjs/operators';
 import {Http, Response} from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -16,4 +17,7 @@ export class LoginUserService {
       'Content-Type':  'application/json'
     })
   };
+  loginUser(user: User): Observable<UserLoginData>{
+    return this.httpClient.post<UserLoginData>(this.loginUserUrl, user, this.httpOptions)
+  }
 }
