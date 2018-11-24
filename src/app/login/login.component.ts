@@ -34,6 +34,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("POST Request is successful ", data);
+          // save token to localstorage
+          let auth_token = data.token;
+          console.log(auth_token);
+          console.log(typeof auth_token);
+          localStorage.setItem('auth_token', auth_token);
+          // redirect to main page
           this.router.navigate(['/']);
         },
         error => {
