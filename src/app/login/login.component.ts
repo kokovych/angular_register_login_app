@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
           console.log(auth_token);
           console.log(typeof auth_token);
           localStorage.setItem('auth_token', auth_token);
+          // todo add authorization header to every request ->
+          // todo https://stackoverflow.com/questions/34464108/angular-set-headers-for-every-request/39866166
           // redirect to main page
           this.router.navigate(['/']);
         },
