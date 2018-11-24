@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router} from '@angular/router';
 
 import { User } from '../_models/user';
 import { LoginUserService } from '../_services/loginuser.service';
@@ -11,7 +12,7 @@ import { LoginUserService } from '../_services/loginuser.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private _loginUserService: LoginUserService) {}
+  constructor(private _loginUserService: LoginUserService, private router: Router) {}
   user: User = new User();
   userLoginForm: FormGroup;
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("POST Request is successful ", data);
+          this.router.navigate(['/']);
         },
         error => {
           console.log("Error", error);
