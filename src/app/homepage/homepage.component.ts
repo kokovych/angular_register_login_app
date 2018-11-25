@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService} from '../_services/userdata.service';
 
+import { CheckAuthService } from '../_services/check-auth.service';
+
 
 @Component({
   selector: 'app-homepage',
@@ -9,30 +11,21 @@ import { UserDataService} from '../_services/userdata.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private _userData: UserDataService) { }
+  constructor(
+    private _userData: UserDataService, private _checkAuth: CheckAuthService) { }
 
   ngOnInit() {
-    let auth_token = localStorage.getItem(
-      'auth_token'
-    );
-    if (auth_token){
-      console.log(auth_token);
-      console.log(typeof auth_token);
+    let userIsAuthorize: boolean;
+    userIsAuthorize = this._checkAuth.isAuthorized();
+    if (userIsAuthorize){
+      console.log('userIsAuthorize: ', userIsAuthorize);
 
       this._userData.getUserData()
         .subscribe(
           data => {
             console.log("GET Request is successful ");
             console.log(data);
-            // save token to localstorage
-            // let auth_token = data.token;
-            // console.log(auth_token);
-            // console.log(typeof auth_token);
-            // localStorage.setItem('auth_token', auth_token);
-            // // todo add authorization header to every request ->
-            // // todo https://stackoverflow.com/questions/34464108/angular-set-headers-for-every-request/39866166
-            // // redirect to main page
-            // this.router.navigate(['/']);
+            let username = data.username;
           },
           error => {
             console.log("Error", error);
@@ -40,7 +33,8 @@ export class HomepageComponent implements OnInit {
         )
 
     } else {
-      console.log('No auth_token!')
+      console.log('userIsAuthorize: ', userIsAuthorize);
+      console.log('No auth_token!');
     };
   }
 

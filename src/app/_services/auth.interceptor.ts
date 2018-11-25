@@ -5,20 +5,26 @@ import {
   HttpHandler,
   HttpRequest,
 } from '@angular/common/http';
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
+import { CheckAuthService } from "./check-auth.service";
+
 
 @Injectable()
 export class AddHeaderInterceptor implements HttpInterceptor {
+  constructor( private _checkAuth: CheckAuthService){}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let auth_token = localStorage.getItem(
-      'auth_token'
-    );
-    if (auth_token){
-      console.log(auth_token);
-      console.log(typeof auth_token);
+    // let auth_token = localStorage.getItem(
+    //   'auth_token'
+    // );
+    let userIsAuthorize: boolean;
+    userIsAuthorize = this._checkAuth.isAuthorized();
+    if (userIsAuthorize){
+      let auth_token = localStorage.getItem(
+        'auth_token'
+      );
       // Clone the request to add the new header
       const clonedRequest = req.clone({ headers: req.headers.set('Authorization', 'Token ' + auth_token) });
-
       // Pass the cloned request instead of the original request to the next handle
       return next.handle(clonedRequest);
     } else {

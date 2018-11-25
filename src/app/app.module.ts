@@ -12,7 +12,8 @@ import { LoginUserService } from './_services/loginuser.service';
 
 import { AddHeaderInterceptor} from './_services/auth.interceptor';
 import { HTTP_INTERCEPTORS} from '@angular/common/http';
-import {UserDataService} from "./_services/userdata.service";
+import { UserDataService } from "./_services/userdata.service";
+import { CheckAuthService } from "./_services/check-auth.service";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {UserDataService} from "./_services/userdata.service";
   providers: [
     LoginUserService,
     UserDataService,
+    CheckAuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
