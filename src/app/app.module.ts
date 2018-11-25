@@ -10,6 +10,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginUserService } from './_services/loginuser.service';
 
+import { AddHeaderInterceptor} from './_services/auth.interceptor';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import {UserDataService} from "./_services/userdata.service";
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -23,7 +28,15 @@ import { LoginUserService } from './_services/loginuser.service';
     HomepageComponent,
     RegistrationComponent
   ],
-  providers: [LoginUserService],
+  providers: [
+    LoginUserService,
+    UserDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
