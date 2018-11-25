@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CheckAuthService} from './_services/check-auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private _checkAuth: CheckAuthService){}
   title = 'Application Personal Account';
+  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
 }

@@ -38,7 +38,11 @@ export class LoginComponent implements OnInit {
           let auth_token = data.token;
           localStorage.setItem('auth_token', auth_token);
           // redirect to main page
-          this.router.navigate(['/']);
+          // window.location.href = '/';
+          // window.location.reload();
+          // this.router.navigate(['/'], { queryParams: { 'refresh': 1 }});
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+            this.router.navigate(["/"]));
         },
         error => {
           console.log("Error", error);

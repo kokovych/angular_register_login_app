@@ -1,10 +1,14 @@
 <h1>{{title}}</h1>
 <nav>
-  <a routerLink="/registration">Registration</a>
-  <br>
-  <a routerLink="/login">Login</a>
-  <br>
-  <a routerLink="/">Main page</a>
-  <br>
+  <div *ngIf="!userIsAuthorize ">
+    <a routerLink="/registration">Registration</a>
+    <br>
+    <a routerLink="/login">Login</a>
+    <br>
+  </div>
+  <div>
+    <a routerLink="/">Main page</a>
+    <br>
+  </div>
 </nav>
 <router-outlet></router-outlet>
