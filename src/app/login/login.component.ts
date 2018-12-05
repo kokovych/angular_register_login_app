@@ -38,11 +38,35 @@ export class LoginComponent implements OnInit {
           let auth_token = data.token;
           localStorage.setItem('auth_token', auth_token);
           // redirect to main page
+
+          console.log("before navigate");
+          this.router.navigate(['/']);
+          window.location.href = '/';
+          window.location.reload();
+          // setTimeout(() =>
+          //   {
+          //     console.log("before navigate in timeout");
+          //     this.router.navigate(['/']);
+          //     window.location.href = '/';
+          //     window.location.reload();
+          //   },
+          //   9000);
+          // this.router.navigate(['/']);
+          // console.log("before href");
           // window.location.href = '/';
+          // console.log("before reload");
           // window.location.reload();
-          // this.router.navigate(['/'], { queryParams: { 'refresh': 1 }});
-          this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-            this.router.navigate(["/"]));
+          // this.router.navigate(['/']);
+          //this.router.navigateByUrl("registration")
+          // this.router.navigateByUrl('/', {skipLocationChange: true}).then(
+          //   () => {
+          //     console.log("before href");
+          //     window.location.href = '/';
+          //     window.location.reload();
+          //     console.log("before navigate");
+          //     this.router.navigate(["/"]);
+          //   }
+          // );
         },
         error => {
           console.log("Error", error);
