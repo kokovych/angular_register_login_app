@@ -13,6 +13,7 @@ export class PageHeaderComponent implements OnInit {
   userIsAuthorize: boolean = this._checkAuth.isAuthorized();
   ngOnInit() {
     console.log("you are in ngOnInit PageHeaderComponent");
+    console.log(this.userIsAuthorize);
   }
 
 }
