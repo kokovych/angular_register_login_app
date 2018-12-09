@@ -1,3 +1,15 @@
 <p>
   page-header works!
 </p>
+<nav>
+  <div *ngIf="!userIsAuthorize ">
+    <a routerLink="/registration">Registration</a>
+    <br>
+    <a routerLink="/login">Login</a>
+    <br>
+  </div>
+  <div>
+    <a routerLink="/">Main page</a>
+    <br>
+  </div>
+</nav>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {CheckAuthService} from '../_services/check-auth.service';
+
 @Component({
   selector: 'app-page-header',
   templateUrl: './page-header.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private _checkAuth: CheckAuthService) { }
+  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
   ngOnInit() {
+    console.log("you are in ngOnInit PageHeaderComponent");
   }
 
 }

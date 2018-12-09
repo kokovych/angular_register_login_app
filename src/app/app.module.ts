@@ -26,10 +26,10 @@ import { PageHeaderComponent } from './page-header/page-header.component';
   ],
   declarations: [
     AppComponent,
+    PageHeaderComponent,
     LoginComponent,
     HomepageComponent,
     RegistrationComponent,
-    PageHeaderComponent
   ],
   providers: [
     LoginUserService,

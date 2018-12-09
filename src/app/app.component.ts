@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CheckAuthService} from './_services/check-auth.service';
+import { Component, OnInit } from '@angular/core';
+// import { CheckAuthService} from './_services/check-auth.service';
 
 
 @Component({
@@ -7,8 +7,13 @@ import { CheckAuthService} from './_services/check-auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private _checkAuth: CheckAuthService){}
+export class AppComponent implements OnInit{
+  constructor(){
+    console.log('AppComponent');
+  };
   title = 'Application Personal Account';
-  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
+  ngOnInit() {
+    console.log('in ngOnInit  AppComponent');
+
+  }
 }

@@ -15,8 +15,11 @@ export class HomepageComponent implements OnInit {
     private _userData: UserDataService, private _checkAuth: CheckAuthService) { }
 
   ngOnInit() {
+    console.log("You aer in on init of hamepage!");
     let userIsAuthorize: boolean;
     userIsAuthorize = this._checkAuth.isAuthorized();
+    console.log("userIsAuthorize====>>");
+    console.log(userIsAuthorize);
     if (userIsAuthorize){
       console.log('userIsAuthorize: ', userIsAuthorize);
 

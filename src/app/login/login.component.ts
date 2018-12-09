@@ -12,7 +12,11 @@ import { LoginUserService } from '../_services/loginuser.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private _loginUserService: LoginUserService, private router: Router) {}
+  constructor(private _loginUserService: LoginUserService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+  }
   user: User = new User();
   userLoginForm: FormGroup;
 
@@ -40,9 +44,10 @@ export class LoginComponent implements OnInit {
           // redirect to main page
 
           console.log("before navigate");
+          // this.ngZone.run(() => this.router.navigateByUrl("/"))
           this.router.navigate(['/']);
-          window.location.href = '/';
-          window.location.reload();
+          // window.location.href = '/';
+          // window.location.reload();
           // setTimeout(() =>
           //   {
           //     console.log("before navigate in timeout");
