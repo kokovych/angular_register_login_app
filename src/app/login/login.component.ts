@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     private _loginUserService: LoginUserService,
     private router: Router,
     private _checkAuth: CheckAuthService) {
+    // add this part because fow working router.navigate in Firefox
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
@@ -52,30 +53,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
           // window.location.href = '/';
           // window.location.reload();
-          // setTimeout(() =>
-          //   {
-          //     console.log("before navigate in timeout");
-          //     this.router.navigate(['/']);
-          //     window.location.href = '/';
-          //     window.location.reload();
-          //   },
-          //   9000);
-          // this.router.navigate(['/']);
-          // console.log("before href");
-          // window.location.href = '/';
-          // console.log("before reload");
-          // window.location.reload();
-          // this.router.navigate(['/']);
-          //this.router.navigateByUrl("registration")
-          // this.router.navigateByUrl('/', {skipLocationChange: true}).then(
-          //   () => {
-          //     console.log("before href");
-          //     window.location.href = '/';
-          //     window.location.reload();
-          //     console.log("before navigate");
-          //     this.router.navigate(["/"]);
-          //   }
-          // );
+
         },
         error => {
           console.log("Error", error);
