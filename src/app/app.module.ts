@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS} from '@angular/common/http';
 import { UserDataService } from "./_services/userdata.service";
 import { CheckAuthService } from "./_services/check-auth.service";
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     LoginComponent,
     HomepageComponent,
     RegistrationComponent,
+    LogoutComponent,
   ],
   providers: [
     LoginUserService,
