@@ -1,19 +1,18 @@
-<p>
-  page-header works!
-</p>
-<nav>
-  <div>
-    <a routerLink="/">Main page</a>
-    <br>
-  </div>
-  <div *ngIf="!userIsAuthorize ">
-    <a routerLink="/registration">Registration</a>
-    <br>
-    <a routerLink="/login">Login</a>
-    <br>
-  </div>
-  <div *ngIf="userIsAuthorize ">
-    <a routerLink="/logout">Logout</a>
-    <br>
-  </div>
-</nav>
+<div>
+  <nav>
+    <div>
+      <a routerLink="/">Main page</a>
+      <br>
+    </div>
+    <div *ngIf="!userIsAuthorize ">
+      <a routerLink="/registration">Registration</a>
+      <br>
+      <a routerLink="/login">Login</a>
+      <br>
+    </div>
+    <div *ngIf="userIsAuthorize ">
+      <a routerLink="/logout">Logout</a>
+      <br>
+    </div>
+  </nav>
+</div>

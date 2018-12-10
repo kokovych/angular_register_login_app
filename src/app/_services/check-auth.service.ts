@@ -13,8 +13,7 @@ export class CheckAuthService {
     if (auth_token){
       console.log(auth_token);
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 }

@@ -2,47 +2,49 @@
 
 </app-page-header>
 
-<h2>Login</h2>
+<div *ngIf="!userIsAuthorize">
+  <h2>Login</h2>
+  <form [formGroup] ="userLoginForm" (ngSubmit) = "onSubmit(userLoginForm.value)">
+    <div class="form-group">
+      <label for="email" >EMAIL</label>
+      <input id="email" class="form-control"
+             formControlName="email" required >
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
 
-<form [formGroup] ="userLoginForm" (ngSubmit) = "onSubmit(userLoginForm.value)">
-  <div class="form-group">
-    <label for="email" >EMAIL</label>
-    <input id="email" class="form-control"
-           formControlName="email" required >
-    <div *ngIf="email.invalid && (email.dirty || email.touched)"
-         class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="email.errors.pattern">
+          It does not look like email!
+        </div>
+        pattern
 
-      <div *ngIf="email.errors.required">
-        Email is required.
       </div>
-      <div *ngIf="email.errors.pattern">
-        It does not look like email!
-      </div>
-      pattern
 
+      <br/>
+      <label for="password" >password</label>
+      <input type="password" class="form-control"
+             name="password" id="password"
+             formControlName = "password"
+             required/>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="password.errors.required">
+          Password is required.
+        </div>
+
+      </div>
+      <br/>
+      <!--<input type = "submit" value = "Login">-->
+
+      <button type="submit" class="btn btn-default"
+              [disabled]="userLoginForm.invalid">Login</button>
     </div>
+  </form>
+</div>
 
-    <br/>
-    <label for="password" >password</label>
-    <input type="password" class="form-control"
-           name="password" id="password"
-           formControlName = "password"
-           required/>
-    <div *ngIf="password.invalid && (password.dirty || password.touched)"
-         class="alert alert-danger">
-
-      <div *ngIf="password.errors.required">
-        Password is required.
-      </div>
-
-    </div>
-    <br/>
-    <!--<input type = "submit" value = "Login">-->
-
-    <button type="submit" class="btn btn-default"
-            [disabled]="userLoginForm.invalid">Login</button>
-  </div>
-</form>
-
-
-<!--</div>-->
+<div *ngIf="userIsAuthorize">
+  <h2>You have been already authorized!</h2>
+</div>

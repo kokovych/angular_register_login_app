@@ -4,6 +4,7 @@ import { Router} from '@angular/router';
 
 import { User } from '../_models/user';
 import { LoginUserService } from '../_services/loginuser.service';
+import { CheckAuthService } from "../_services/check-auth.service";
 
 
 @Component({
@@ -12,14 +13,17 @@ import { LoginUserService } from '../_services/loginuser.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private _loginUserService: LoginUserService, private router: Router) {
+  constructor(
+    private _loginUserService: LoginUserService,
+    private router: Router,
+    private _checkAuth: CheckAuthService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
   }
   user: User = new User();
   userLoginForm: FormGroup;
-
+  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
 
   ngOnInit() {
     this.userLoginForm = new FormGroup({
