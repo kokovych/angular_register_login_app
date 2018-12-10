@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
   user: User = new User();
   userLoginForm: FormGroup;
-  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
+  userIsAuthorized: boolean = this._checkAuth.isAuthorized();
 
   ngOnInit() {
     this.userLoginForm = new FormGroup({

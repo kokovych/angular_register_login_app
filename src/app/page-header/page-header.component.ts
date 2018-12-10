@@ -10,10 +10,10 @@ import {CheckAuthService} from '../_services/check-auth.service';
 export class PageHeaderComponent implements OnInit {
 
   constructor(private _checkAuth: CheckAuthService) { }
-  userIsAuthorize: boolean = this._checkAuth.isAuthorized();
+  userIsAuthorized: boolean = this._checkAuth.isAuthorized();
   ngOnInit() {
     console.log("you are in ngOnInit PageHeaderComponent");
-    console.log(this.userIsAuthorize);
+    console.log(this.userIsAuthorized);
   }
 
 }

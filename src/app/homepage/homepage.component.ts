@@ -34,12 +34,12 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     console.log("You aer in on init of hamepage!");
-    let userIsAuthorize: boolean;
-    userIsAuthorize = this._checkAuth.isAuthorized();
-    console.log("userIsAuthorize====>>");
-    console.log(userIsAuthorize);
-    if (userIsAuthorize){
-      console.log('userIsAuthorize: ', userIsAuthorize);
+    let userIsAuthorized: boolean;
+    userIsAuthorized = this._checkAuth.isAuthorized();
+    console.log("userIsAuthorized====>>");
+    console.log(userIsAuthorized);
+    if (userIsAuthorized){
+      console.log('userIsAuthorized: ', userIsAuthorized);
 
       this._userData.getUserData()
         .subscribe(
@@ -54,7 +54,7 @@ export class HomepageComponent implements OnInit {
         )
 
     } else {
-      console.log('userIsAuthorize: ', userIsAuthorize);
+      console.log('userIsAuthorized: ', userIsAuthorized);
       console.log('No auth_token!');
     };
   }

@@ -2,7 +2,7 @@
 
 </app-page-header>
 
-<div *ngIf="!userIsAuthorize">
+<div *ngIf="!userIsAuthorized">
   <h2>Login</h2>
   <form [formGroup] ="userLoginForm" (ngSubmit) = "onSubmit(userLoginForm.value)">
     <div class="form-group">
@@ -45,6 +45,6 @@
   </form>
 </div>
 
-<div *ngIf="userIsAuthorize">
+<div *ngIf="userIsAuthorized">
   <h2>You have been already authorized!</h2>
 </div>

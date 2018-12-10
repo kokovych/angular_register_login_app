@@ -17,9 +17,9 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     // let auth_token = localStorage.getItem(
     //   'auth_token'
     // );
-    let userIsAuthorize: boolean;
-    userIsAuthorize = this._checkAuth.isAuthorized();
-    if (userIsAuthorize){
+    let userIsAuthorized: boolean;
+    userIsAuthorized = this._checkAuth.isAuthorized();
+    if (userIsAuthorized){
       let auth_token = localStorage.getItem(
         'auth_token'
       );

@@ -4,13 +4,13 @@
       <a routerLink="/">Main page</a>
       <br>
     </div>
-    <div *ngIf="!userIsAuthorize ">
+    <div *ngIf="!userIsAuthorized ">
       <a routerLink="/registration">Registration</a>
       <br>
       <a routerLink="/login">Login</a>
       <br>
     </div>
-    <div *ngIf="userIsAuthorize ">
+    <div *ngIf="userIsAuthorized ">
       <a routerLink="/logout">Logout</a>
       <br>
     </div>
