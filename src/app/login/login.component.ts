@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   userLoginForm: FormGroup;
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
+  errorLogin: boolean = false;
+  errorLoginDescription: string = '';
 
   ngOnInit() {
     this.userLoginForm = new FormGroup({
@@ -57,6 +59,9 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log("Error", error);
+          this.errorLogin = true;
+          console.log(error.error.description);
+          this.errorLoginDescription = error.error.description;
         }
       );
   }
