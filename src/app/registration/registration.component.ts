@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
 
 import { User } from '../_models/user';
+import { UserRegistrationData} from '../_models/user';
 import { CheckAuthService } from "../_services/check-auth.service";
 
 

@@ -10,3 +10,12 @@ export class UserLoginData {
   token: string;
 }
 
+export class UserRegistrationData{
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
