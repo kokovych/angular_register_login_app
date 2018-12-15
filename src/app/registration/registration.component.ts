@@ -18,22 +18,39 @@ export class RegistrationComponent implements OnInit {
     private router: Router,
     private _checkAuth: CheckAuthService) { }
 
-  user: User = new User();
+  user: UserRegistrationData = new UserRegistrationData();
   userRegistrationForm: FormGroup;
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
 
   ngOnInit() {
     this.userRegistrationForm = new FormGroup({
-      email: new FormControl(this.user.email ,
+      firstName: new FormControl(this.user.firstName),
+      lastName: new FormControl(this.user.lastName),
+      username: new FormControl(this.user.username),
+      email: new FormControl(this.user.email,
         [ Validators.required, Validators.pattern('[^ @]*@[^ @]*')]),
       password: new FormControl(this.user.password,
-        [ Validators.required])
+        [ Validators.required]),
+      passwordConfirm: new FormControl(this.user.passwordConfirm,
+        [ Validators.required,  ])
     });
   }
-  onSubmit(user: User) {
+  onSubmit(user: UserRegistrationData) {
     console.log('user');
     console.log(user);
     console.log(typeof user);
+  }
+
+  get firstName() {
+    return this.userRegistrationForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.userRegistrationForm.get('lastName');
+  }
+
+  get username() {
+    return this.userRegistrationForm.get('username');
   }
 
   get email() {
@@ -42,6 +59,10 @@ export class RegistrationComponent implements OnInit {
 
   get password() {
     return this.userRegistrationForm.get('password');
+  }
+
+  get passwordConfirm() {
+    return this.userRegistrationForm.get('passwordConfirm');
   }
 
 }

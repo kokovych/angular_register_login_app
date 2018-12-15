@@ -12,7 +12,22 @@
           <h2>Registration</h2>
           <form [formGroup] ="userRegistrationForm" class="form-signin" (ngSubmit) = "onSubmit(userRegistrationForm.value)">
             <div class="form-group">
+              <!--First name-->
+              <label for="firstName" class="sr-only">First Name</label>
+              <input id="firstName" class="form-control"
+                     formControlName="firstName" placeholder="First Name" >
 
+              <!--Last name-->
+              <label for="lastName" class="sr-only">Last Name</label>
+              <input id="lastName" class="form-control"
+                     formControlName="lastName" placeholder="Last Name" >
+
+              <!-- Username-->
+              <label for="username" class="sr-only">Username</label>
+              <input id="username" class="form-control"
+                     formControlName="username" placeholder="Username" >
+
+              <!--Email part-->
               <label for="email" class="sr-only">Email</label>
               <input id="email" class="form-control"
                      formControlName="email" placeholder="Email address" required >
@@ -30,6 +45,7 @@
               </div>
               <!--end errors for email-->
 
+              <!--Password part-->
               <label for="password" class="sr-only">Password</label>
               <input type="password" class="form-control"
                      name="password" id="password"
@@ -44,16 +60,33 @@
                     Password is required.
                   </span>
                 </div>
-                <!--Common login errors:-->
-                <div>
-                  <span *ngIf="errorLogin">
-                    {{errorLoginDescription}}
-                  </span>
-                </div>
+                <!--&lt;!&ndash;Common login errors:&ndash;&gt;-->
+                <!--<div>-->
+                  <!--<span *ngIf="errorLogin">-->
+                    <!--{{errorLoginDescription}}-->
+                  <!--</span>-->
+                <!--</div>-->
 
               </div>
               <!--end errors for password-->
 
+              <!--password confirm-->
+              <label for="passwordConfirm" class="sr-only">Confirm password</label>
+              <input type="password" class="form-control"
+                     name="passwordConfirm" id="passwordConfirm"
+                     formControlName = "passwordConfirm"
+                     placeholder="Confirm password"
+                     required/>
+
+              <!--Errors for confirm password:-->
+              <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="passwordConfirm.errors.required">
+                  passwordConfirm is required.
+                </div>
+
+              </div>
 
               <button ngbButton class="btn btn-success" type="submit"
                       [disabled]="userRegistrationForm.invalid">Registrate</button>
