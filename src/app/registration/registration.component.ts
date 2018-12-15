@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder,  ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
+import { AbstractControl } from '@angular/forms';
 
 import { User } from '../_models/user';
 import { UserRegistrationData} from '../_models/user';
 import { CheckAuthService } from "../_services/check-auth.service";
+import { MustMatch } from '../_services/must-mutch.validator';
 
 
 @Component({
@@ -16,14 +18,15 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _checkAuth: CheckAuthService) { }
+    private _checkAuth: CheckAuthService,
+    private formBuilder: FormBuilder) { }
 
   user: UserRegistrationData = new UserRegistrationData();
   userRegistrationForm: FormGroup;
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
 
   ngOnInit() {
-    this.userRegistrationForm = new FormGroup({
+    this.userRegistrationForm = this.formBuilder.group({
       firstName: new FormControl(this.user.firstName),
       lastName: new FormControl(this.user.lastName),
       username: new FormControl(this.user.username),
@@ -32,37 +35,18 @@ export class RegistrationComponent implements OnInit {
       password: new FormControl(this.user.password,
         [ Validators.required]),
       passwordConfirm: new FormControl(this.user.passwordConfirm,
-        [ Validators.required,  ])
-    });
+        [ Validators.required ])
+    }, {
+      validator: MustMatch("password", "passwordConfirm") });
   }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.userRegistrationForm.controls; }
+
   onSubmit(user: UserRegistrationData) {
     console.log('user');
     console.log(user);
     console.log(typeof user);
-  }
-
-  get firstName() {
-    return this.userRegistrationForm.get('firstName');
-  }
-
-  get lastName() {
-    return this.userRegistrationForm.get('lastName');
-  }
-
-  get username() {
-    return this.userRegistrationForm.get('username');
-  }
-
-  get email() {
-    return this.userRegistrationForm.get('email');
-  }
-
-  get password() {
-    return this.userRegistrationForm.get('password');
-  }
-
-  get passwordConfirm() {
-    return this.userRegistrationForm.get('passwordConfirm');
   }
 
 }
