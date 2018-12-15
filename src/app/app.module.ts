@@ -18,6 +18,7 @@ import { UserDataService } from "./_services/userdata.service";
 import { CheckAuthService } from "./_services/check-auth.service";
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { LogoutComponent } from './logout/logout.component';
+import {RegistrationUserService} from "./_services/registration.service";
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { LogoutComponent } from './logout/logout.component';
   ],
   providers: [
     LoginUserService,
+    RegistrationUserService,
     UserDataService,
     CheckAuthService,
     {

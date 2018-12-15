@@ -7,6 +7,7 @@ import { User } from '../_models/user';
 import { UserRegistrationData} from '../_models/user';
 import { CheckAuthService } from "../_services/check-auth.service";
 import { MustMatch } from '../_services/must-mutch.validator';
+import { RegistrationUserService } from '../_services/registration.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private _registrationUserService: RegistrationUserService,
     private _checkAuth: CheckAuthService,
     private formBuilder: FormBuilder) { }
 
@@ -47,6 +49,30 @@ export class RegistrationComponent implements OnInit {
     console.log('user');
     console.log(user);
     console.log(typeof user);
+
+    this._registrationUserService.registrationUser(user)
+      .subscribe(
+        data => {
+          console.log("POST Request is successful ", data);
+          // save token to localstorage
+          // let auth_token = data.token;
+          // localStorage.setItem('auth_token', auth_token);
+          // redirect to main page
+
+          console.log("before navigate");
+          // this.ngZone.run(() => this.router.navigateByUrl("/"))
+          this.router.navigate(['/login']);
+          // window.location.href = '/';
+          // window.location.reload();
+
+        },
+        error => {
+          console.log("Error", error);
+          // this.errorRegistrate = true;
+          // console.log(error.error.description);
+          // this.errorRegistrateDescription = error.error.description;
+        }
+      );
   }
 
 }
