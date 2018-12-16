@@ -11,7 +11,7 @@
         <div *ngIf="!userIsAuthorized">
           <h2>Registration</h2>
           <form [formGroup] ="userRegistrationForm" class="form-signin" (ngSubmit) = "onSubmit(userRegistrationForm.value)">
-            <div class="form-group">
+            <div class="form-group" (click)="removeErrorDescription()">
               <!--First name-->
               <label for="firstName" class="sr-only">First Name</label>
               <input id="firstName" class="form-control"
@@ -53,10 +53,10 @@
                      placeholder="Password"
                      required/>
               <!--Errors for password and common errors here:-->
-              <div *ngIf="errorLogin || (f.password.invalid && (f.password.dirty || f.password.touched))"
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
                    class="alert alert-danger">
-                <div *ngIf="!errorLogin">
-                  <span *ngIf="f.password.errors.required">
+                <div *ngIf="f.password.errors.required">
+                  <span>
                     Password is required.
                   </span>
                 </div>
@@ -79,17 +79,30 @@
                      required/>
 
               <!--Errors for confirm password:-->
-              <div *ngIf="f.passwordConfirm.invalid && (f.passwordConfirm.dirty || f.passwordConfirm.touched)"
+              <div *ngIf="(f.passwordConfirm.invalid && (f.passwordConfirm.dirty || f.passwordConfirm.touched))"
                    class="alert alert-danger">
 
                 <div *ngIf="f.passwordConfirm.errors.required">
-                  Password confirmation is required!
+                  <span>
+                    Password confirmation is required!
+                  </span>
                 </div>
 
                 <div *ngIf="f.passwordConfirm.errors.mustMatch">
-                  Password does not match!
+                  <span>
+                    Password does not match!
+                  </span>
                 </div>
 
+              </div>
+
+              <div *ngIf="errorRregistration" id="id_errorRregistration"
+                   class="alert alert-danger">
+                <div >
+                  <span>
+                    {{ keyErrorObj }}: {{ valueErrorObj }}
+                  </span>
+                </div>
               </div>
 
               <button ngbButton class="btn btn-success" type="submit"

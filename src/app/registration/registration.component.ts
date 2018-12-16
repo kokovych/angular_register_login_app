@@ -26,6 +26,10 @@ export class RegistrationComponent implements OnInit {
   user: UserRegistrationData = new UserRegistrationData();
   userRegistrationForm: FormGroup;
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
+  errorRregistration: boolean = false;
+  keyErrorObj: string = '';
+  valueErrorObj: string = '';
+
 
   ngOnInit() {
     this.userRegistrationForm = this.formBuilder.group({
@@ -68,11 +72,27 @@ export class RegistrationComponent implements OnInit {
         },
         error => {
           console.log("Error", error);
-          // this.errorRegistrate = true;
-          // console.log(error.error.description);
-          // this.errorRegistrateDescription = error.error.description;
+          this.errorRregistration = true;
+          console.log(error.error);
+          let error_obj = error.error;
+          console.log(error_obj);
+          this.keyErrorObj = Object.keys(error_obj)[0];
+          this.valueErrorObj = Object["values"](error_obj)[0][0];
+          let elementError = document.getElementById("id_errorRregistration");
+          if (elementError) {
+            elementError.style.display = '';
+          }
         }
       );
+  }
+
+  removeErrorDescription() {
+    console.log("in removeErrorDescription");
+    let elementError = document.getElementById("id_errorRregistration");
+    if (elementError) {
+      console.log("in removeErrorDescription IF TRUE");
+      elementError.style.display = 'none';
+    }
   }
 
 }
