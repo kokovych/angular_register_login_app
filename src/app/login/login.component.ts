@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 import { User } from '../_models/user';
 import { LoginUserService } from '../_services/loginuser.service';
@@ -16,17 +16,21 @@ export class LoginComponent implements OnInit {
   constructor(
     private _loginUserService: LoginUserService,
     private router: Router,
+    private _activatedRouter: ActivatedRoute,
     private _checkAuth: CheckAuthService) {
+
     // add this part because fow working router.navigate in Firefox
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
   }
+
   user: User = new User();
   userLoginForm: FormGroup;
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
   errorLogin: boolean = false;
   errorLoginDescription: string = '';
+  loginFromRegistration: boolean = false;
 
   ngOnInit() {
     this.userLoginForm = new FormGroup({
@@ -35,11 +39,19 @@ export class LoginComponent implements OnInit {
       password: new FormControl(this.user.password,
         [ Validators.required])
     });
+
+    this._activatedRouter.queryParams.subscribe(
+      params => {
+        if (params){
+          let query_param = params["registration"];
+          if (query_param == 'true'){
+            this.loginFromRegistration = true;
+          }
+        }
+      }
+    )
   }
   onSubmit(user: User) {
-    console.log('user');
-    console.log(user);
-    console.log(typeof user);
 
     this._loginUserService.loginUser(user)
       .subscribe(
@@ -64,6 +76,13 @@ export class LoginComponent implements OnInit {
           this.errorLoginDescription = error.error.description;
         }
       );
+  }
+
+  closeAlert(){
+    let loginAlert = document.getElementById("id_login_alert");
+    if (loginAlert) {
+      loginAlert.style.display = 'none';
+    }
   }
 
   get email() {

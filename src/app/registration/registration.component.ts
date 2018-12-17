@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
 
           console.log("before navigate");
           // this.ngZone.run(() => this.router.navigateByUrl("/"))
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'], { queryParams: { "registration": "true" } });
           // window.location.href = '/';
           // window.location.reload();
 
@@ -73,7 +73,6 @@ export class RegistrationComponent implements OnInit {
         error => {
           console.log("Error", error);
           this.errorRregistration = true;
-          console.log(error.error);
           let error_obj = error.error;
           console.log(error_obj);
           this.keyErrorObj = Object.keys(error_obj)[0];
@@ -87,10 +86,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   removeErrorDescription() {
-    console.log("in removeErrorDescription");
     let elementError = document.getElementById("id_errorRregistration");
     if (elementError) {
-      console.log("in removeErrorDescription IF TRUE");
       elementError.style.display = 'none';
     }
   }

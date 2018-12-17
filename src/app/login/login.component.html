@@ -8,6 +8,11 @@
       <div class="text-center col-6 ">
 
         <div *ngIf="!userIsAuthorized">
+
+          <ngb-alert *ngIf="loginFromRegistration" id = "id_login_alert" type="success" (close)="closeAlert()">
+            You have been successfully registrated! Please, login
+          </ngb-alert>
+
           <h2>Login</h2>
           <form [formGroup] ="userLoginForm" class="form-signin" (ngSubmit) = "onSubmit(userLoginForm.value)">
             <div class="form-group">
