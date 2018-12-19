@@ -19,6 +19,7 @@ import { CheckAuthService } from "./_services/check-auth.service";
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { LogoutComponent } from './logout/logout.component';
 import {RegistrationUserService} from "./_services/registration.service";
+import { PageFooterComponent } from './page-footer/page-footer.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {RegistrationUserService} from "./_services/registration.service";
     HomepageComponent,
     RegistrationComponent,
     LogoutComponent,
+    PageFooterComponent,
   ],
   providers: [
     LoginUserService,
