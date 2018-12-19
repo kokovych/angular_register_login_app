@@ -3,12 +3,13 @@ import { HttpClient  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { UserRegistrationData } from '../_models/user';
+import { environment} from "../../environments/environment";
 
 @Injectable()
 export class RegistrationUserService {
   constructor(
     private httpClient: HttpClient) { }
-  registrationUserUrl = 'http://127.0.0.1:8000/api/user/registration/';
+  registrationUserUrl = environment.baseUrl + 'api/user/registration/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
